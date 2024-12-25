@@ -9,10 +9,16 @@ namespace Exo13Salaire.NET
         private int _chiffreAffaire;
         private double _commission;
         private double _comissionPourcentage;
+        private List<Commercial> _commercials;
+        private List<Salarie> salaries;
 
         public int ChiffreAffaire { get => _chiffreAffaire; set => _chiffreAffaire = value; }
         public double Commission { get => _commission; set => _commission = value; }
         public double ComissionPourcentage { get => _comissionPourcentage; set => _comissionPourcentage = value; }
+        public  List<Commercial> Commercials { get => _commercials; set => _commercials = value; }
+        public List<Salarie> Salaries { get => _commercials; set => _commercials = value; }
+
+
         // Je déclare un constructeur, "base" appelle tout les attributs de la classe mere Salarie
         public Commercial(string Matricule, string Categorie, string Service, string Nom, int Salaire, double ComissionPourcentage) : base(Matricule, Categorie, Service, Nom, Salaire)
         {
@@ -34,11 +40,40 @@ namespace Exo13Salaire.NET
         }
 
 
-        public void ToString(Commercial commercial)
+        public void IHM()
         {
+            while (true)
+            {
+                Console.WriteLine("=== Gestion des employées ===\n");
+                Console.WriteLine("1-- Ajouter un employé");
+                Console.WriteLine("2-- Afficher le salaire des employés");
+                Console.WriteLine("3-- Rechercher un employé");
+                Console.WriteLine("3-- Quitter");
+
+                int choixMenu;
+                bool successChoixMenu = int.TryParse(Console.ReadLine(), out choixMenu);
+                if (!successChoixMenu)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Erreur, vous n'étes pas autorisé a effectuer cette saisie !");
+                    Console.ResetColor();
+                }
+
+                switch (choixMenu) {
+                    default:
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Erreur, vous n'étes pas autorisé a effectuer cette saisie !");
+                        Console.ResetColor();
+                        break;
+                    case 0:
+                        Environment.Exit(0);
+                        break;
+                    case 1:
+
+                }
+            }
         }
-
-    
-
     }
 }
