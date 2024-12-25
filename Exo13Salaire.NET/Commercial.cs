@@ -7,16 +7,27 @@ namespace Exo13Salaire.NET
     internal class Commercial : Salarie
     {
         private int _chiffreAffaire;
-        private int _commission;
+        private double _commission;
+        
 
         public int ChiffreAffaire { get => _chiffreAffaire; set => _chiffreAffaire = value; }
-        public int Commission { get => _commission; set => _commission = value; }
+        public double Commission { get => _commission; set => _commission = value; }
 
-        // Je déclare un constructeur, "base" appelle tout les paramétres du constructeur Salarie
-        public Commercial(int Matricule, string Service, string Nom, int Salaire, int ChiffreAffaire, int Comission) : base(Matricule, Service, Nom, Salaire)
+        // Je déclare un constructeur, "base" appelle tout les attributs de la classe mere Salarie
+        public Commercial(string Matricule, string Service, string Nom, int Salaire) : base(Matricule, Service, Nom, Salaire)
         {
+            ChiffreAffaire = 7500000;
+            // Comission = chiffre d'affraire * 3% / 100
+            Commission = ChiffreAffaire * (0.03 / 100);
         }
 
-   
+
+        public void AfficherSalaire(Commercial commercial)
+        {
+            Console.WriteLine($"Le salaire de {commercial.Nom} (matricule: {commercial.Matricule}) est de {commercial.Salaire + Commission} euros.");
+        }
+
+    
+
     }
 }

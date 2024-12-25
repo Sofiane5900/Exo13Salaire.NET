@@ -8,12 +8,12 @@ namespace Exo11Salaire.NET
 {
     internal class Salarie
     {
-        private int _matricule;
+        private string _matricule;
         private string _service;
         private string _nom;
         private int _salaire;
 
-        public int Matricule { get => _matricule; set => _matricule = value; }
+        public string Matricule { get => _matricule; set => _matricule = value; }
         public string Service { get => _service; set => _service = value; }
         public string Nom { get => _nom; set => _nom = value; }
         public int Salaire
@@ -33,7 +33,7 @@ namespace Exo11Salaire.NET
         }
 
 
-        public Salarie(int Matricule, string Service, string Nom, int Salaire)
+        public Salarie(string Matricule, string Service, string Nom, int Salaire)
         {
             _matricule = Matricule;
             _service = Service;
