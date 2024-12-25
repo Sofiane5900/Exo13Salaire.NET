@@ -11,6 +11,9 @@ namespace Exo13Salaire.NET
     internal class Commercial : Salarie
     {
         
-      
+        // Je déclare un constructeur, "base" appelle tout les paramétres du constructeur Salarie
+        public Commercial(int Matricule, string Service, string Nom, int Salaire) : base(Matricule, Service, Nom, Salaire)
+        {
+        }
     }
 }
