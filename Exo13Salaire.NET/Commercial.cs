@@ -51,6 +51,7 @@ namespace Exo13Salaire.NET
                 Console.WriteLine("2-- Afficher le salaire des employés");
                 Console.WriteLine("3-- Rechercher un employé");
                 Console.WriteLine("3-- Quitter");
+                Console.Write("Faites votre choix : ");
                 int choixMenu;
                 bool successChoixMenu = int.TryParse(Console.ReadLine(), out choixMenu);
                 if (!successChoixMenu)
@@ -72,6 +73,7 @@ namespace Exo13Salaire.NET
                         Environment.Exit(0);
                         break;
                     case 1:
+                        Console.Clear();
                         Console.WriteLine("=== Ajouter un employé ===\n");
                         Console.WriteLine("1-- Salarié");
                         Console.WriteLine("2-- Commerciale");
