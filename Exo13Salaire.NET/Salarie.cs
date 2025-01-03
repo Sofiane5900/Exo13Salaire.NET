@@ -47,20 +47,18 @@ namespace Exo11Salaire.NET
             }
         }
 
-        public Salarie(string Matricule, string Categorie, string Service, string Nom, int Salaire)
+        public Salarie(string Nom, string Matricule, string Categorie, string Service, int Salaire)
         {
-            _matricule = Matricule;
-            _categorie = Categorie;
-            _service = Service;
-            _nom = Nom;
+            this.Nom = Nom;
+            this.Matricule = Matricule;
+            this.Categorie = Categorie;
+            this.Service = Service;
             this.Salaire = Salaire; // J'utilise this pour indiquer que je veux l'instance "Salaire" a la place du paramétre du constructeur.
         }
 
         public virtual void AfficherSalaire()
         {
-            Console.WriteLine(
-                $"Le salaire avec commision de {Nom} est de Salaire} euros."
-            );
+            Console.WriteLine($"Le salaire avec commision de {Nom} est de {Salaire} euros.");
         }
     }
 }

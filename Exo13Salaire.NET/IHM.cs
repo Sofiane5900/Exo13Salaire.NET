@@ -1,11 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using Exo11Salaire.NET;
 
 namespace Exo13Salaire.NET
 {
     internal class IHM
     {
-        public static void AfficherIHM()
+        private List<Commercial> _commercials;
+        private List<Salarie> _salaries;
+
+        public IHM(List<Commercial> Commercials, List<Salarie> Salaries)
+        {
+            this.Commercials = Commercials;
+            this.Salaries = Salaries;
+        }
+
+        public List<Commercial> Commercials
+        {
+            get => _commercials;
+            set => _commercials = value;
+        }
+        public List<Salarie> Salaries
+        {
+            get => _salaries;
+            set => _salaries = value;
+        }
+
+        public void AfficherIHM()
         {
             while (true)
             {
@@ -27,6 +48,7 @@ namespace Exo13Salaire.NET
                         AjouterEmploye();
                         break;
                     case 2:
+                        AfficherSalaire();
                         break;
                     case 3:
                         break;
@@ -42,7 +64,7 @@ namespace Exo13Salaire.NET
             }
         }
 
-        private static void AjouterEmploye()
+        private void AjouterEmploye()
         {
             Console.Clear();
             Console.WriteLine("=== Ajouter un employé ===\n");
@@ -63,6 +85,9 @@ namespace Exo13Salaire.NET
                 case 2:
                     AjouterCommercial();
                     break;
+                case 3:
+                    RechercherEmploye();
+                    break;
                 case 0:
                     Console.Clear();
                     break;
@@ -72,7 +97,7 @@ namespace Exo13Salaire.NET
             }
         }
 
-        private static void AjouterSalarie()
+        private void AjouterSalarie()
         {
             Console.Write("Merci de saisir le nom: ");
             string nom = Console.ReadLine();
@@ -88,9 +113,11 @@ namespace Exo13Salaire.NET
                 AfficherErreur("Erreur, veuillez entrer un salaire valide!");
                 return;
             }
+            Salarie ajoutSalarie = new Salarie(nom, matricule, service, categorie, salaire);
+            Salaries.Add(ajoutSalarie);
         }
 
-        private static void AjouterCommercial()
+        private void AjouterCommercial()
         {
             Console.Write("Merci de saisir le nom: ");
             string nom = Console.ReadLine();
@@ -118,14 +145,65 @@ namespace Exo13Salaire.NET
                 AfficherErreur("Erreur, veuillez entrer une commission valide!");
                 return;
             }
+            Commercial ajoutCommercial = new Commercial(
+                nom,
+                matricule,
+                service,
+                categorie,
+                salaire,
+                chiffreAffaire,
+                commission
+            );
+            Commercials.Add(ajoutCommercial);
         }
 
-        private static void AfficherErreur(string message)
+        private void AfficherErreur(string message)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.ResetColor();
+        }
+
+        private void AfficherSalaire()
+        {
+            Console.Clear();
+            Console.WriteLine("=== Afficher le salaire des employés ===\n");
+            foreach (Salarie salarie in Salaries)
+            {
+                salarie.AfficherSalaire();
+            }
+            foreach (Commercial commercial in Commercials)
+            {
+                commercial.AfficherSalaire();
+            }
+        }
+
+        private void RechercherEmploye()
+        {
+            Console.Clear();
+            Console.Write("Merci de saisir le nom : ");
+            string nom = Console.ReadLine();
+
+            bool employeTrouver = false;
+
+            foreach (Salarie salarie in Salaries)
+            {
+                if (salarie.Nom.Equals(nom, StringComparison.OrdinalIgnoreCase))
+                {
+                    employeTrouver = true;
+                    AfficherSalaire();
+                }
+            }
+
+            foreach (Commercial commercial in Commercials)
+            {
+                if (commercial.Nom.Equals(nom, StringComparison.OrdinalIgnoreCase))
+                {
+                    employeTrouver = true;
+                    AfficherSalaire();
+                }
+            }
         }
     }
 }

@@ -8,55 +8,44 @@ namespace Exo13Salaire.NET
         private int _chiffreAffaire;
         private double _commission;
         private double _comissionPourcentage;
-        private static List<Commercial> _commercials;
-        private List<Salarie> _salaries;
 
         public int ChiffreAffaire
         {
             get => _chiffreAffaire;
             set => _chiffreAffaire = value;
         }
-        public double Commission
-        {
-            get => _commission;
-            set => _commission = value;
-        }
-        public double ComissionPourcentage
+
+        public double CommissionPourcentage
         {
             get => _comissionPourcentage;
             set => _comissionPourcentage = value;
         }
-        public static List<Commercial> Commercials
-        {
-            get => _commercials;
-            set => _commercials = value;
-        }
-        public List<Salarie> Salaries
-        {
-            get => _salaries;
-            set => _salaries = value;
-        }
 
         // Je déclare un constructeur, "base" appelle tout les attributs de la classe mere Salarie
         public Commercial(
+            string Nom,
             string Matricule,
             string Categorie,
             string Service,
-            string Nom,
             int Salaire,
-            int ChiffreAffaire
+            int ChiffreAffaire,
+            double CommissionPourcentage
         )
-            : base(Matricule, Categorie, Service, Nom, Salaire)
+            : base(Nom, Matricule, Categorie, Service, Salaire)
         {
-            _chiffreAffaire = ChiffreAffaire;
-            Commercials = new List<Commercial>();
+            this.ChiffreAffaire = ChiffreAffaire;
+            this.CommissionPourcentage = CommissionPourcentage;
+        }
+
+        public double CalculerComission()
+        {
+            return ChiffreAffaire * (CommissionPourcentage / 100);
         }
 
         public override void AfficherSalaire()
         {
-            Console.WriteLine(
-                $"Le salaire avec commision de {Nom} est de {Salaire + Commission} euros."
-            );
+            double SalaireTotal = Salaire + CalculerComission();
+            Console.WriteLine($"Le salaire avec commision de {Nom} est de {SalaireTotal} euros.");
         }
     }
 }
