@@ -14,10 +14,26 @@ namespace Exo11Salaire.NET
         private string _nom;
         private int _salaire;
 
-        public string Matricule { get => _matricule; set => _matricule = value; }
-        public string Categorie { get => _categorie; set => _categorie = value; }
-        public string Service { get => _service; set => _service = value; }
-        public string Nom { get => _nom; set => _nom = value; }
+        public string Matricule
+        {
+            get => _matricule;
+            set => _matricule = value;
+        }
+        public string Categorie
+        {
+            get => _categorie;
+            set => _categorie = value;
+        }
+        public string Service
+        {
+            get => _service;
+            set => _service = value;
+        }
+        public string Nom
+        {
+            get => _nom;
+            set => _nom = value;
+        }
         public int Salaire
         {
             get => _salaire;
@@ -28,12 +44,8 @@ namespace Exo11Salaire.NET
                     throw new ArgumentOutOfRangeException("Veuillez entrer un salaire correct.");
                 }
                 _salaire = value;
-
             }
-
-
         }
-
 
         public Salarie(string Matricule, string Categorie, string Service, string Nom, int Salaire)
         {
@@ -42,7 +54,13 @@ namespace Exo11Salaire.NET
             _service = Service;
             _nom = Nom;
             this.Salaire = Salaire; // J'utilise this pour indiquer que je veux l'instance "Salaire" a la place du paramétre du constructeur.
+        }
 
+        public virtual void AfficherSalaire()
+        {
+            Console.WriteLine(
+                $"Le salaire avec commision de {Nom} est de Salaire} euros."
+            );
         }
     }
 }

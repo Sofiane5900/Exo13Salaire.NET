@@ -1,3 +1,4 @@
 ﻿using Exo13Salaire.NET;
 
-Commercial.IHM();
+IHM iHM = new IHM();
+IHM.AfficherIHM();

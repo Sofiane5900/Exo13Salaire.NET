@@ -52,20 +52,11 @@ namespace Exo13Salaire.NET
             Commercials = new List<Commercial>();
         }
 
-        public void AfficherSalaire(Salarie salarie)
+        public override void AfficherSalaire()
         {
             Console.WriteLine(
-                $"Le salaire de {salarie.Nom} (matricule: {salarie.Matricule} & categorie: {salarie.Categorie}) est de {salarie.Salaire} euros."
+                $"Le salaire avec commision de {Nom} est de {Salaire + Commission} euros."
             );
         }
-
-        public void AfficherSalaire(Commercial commercial, double Comission)
-        {
-            Console.WriteLine(
-                $"Le salaire avec commision de {commercial.Nom} est de {commercial.Salaire + Commission} euros."
-            );
-        }
-
-        // Une méthode static appartient a la classe, et non pas forcément a une instance de la classe (objet)
     }
 }
